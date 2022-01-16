@@ -1,0 +1,5 @@
+select round((strftime('%Y', 'now') + strftime('%j', 'now') / 365.2422) - (strftime('%Y', Birth_Date) + strftime('%j', Birth_Date) / 365.2422)) as age, sum(cost) as profits
+from Client join Purchase on Client_ID = Purchase_ID
+where round((strftime('%Y', 'now') + strftime('%j', 'now') / 365.2422) - (strftime('%Y', Purchase_date) + strftime('%j', Purchase_date) / 365.2422)) < 10.0
+group by age
+having profits > 100

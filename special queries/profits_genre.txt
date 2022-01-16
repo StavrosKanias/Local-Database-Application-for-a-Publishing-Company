@@ -1,0 +1,5 @@
+select Genre, sum(cost) as profits
+from ((Book join Purchase on Book_ID = Purchase_ID) as t) join Category on t.Category = Category_ID
+where round((strftime('%Y', 'now') + strftime('%j', 'now') / 365.2422) - (strftime('%Y', Purchase_date) + strftime('%j', Purchase_date) / 365.2422)) < 10.0
+group by Genre
+having profits > 100
